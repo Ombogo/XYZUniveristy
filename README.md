@@ -58,6 +58,20 @@ dotnet restore
 
 ## Database Setup
 
+
+## Prerequisites
+
+- Ensure you have **MySQL** installed on your local machine or have access to a MySQL server.
+- Install a MySQL client tool (e.g., MySQL Workbench) for easier database management (optional).
+
+## Create the Database
+
+1. Open your MySQL client and connect to your MySQL server.
+2. Run the following SQL command to create the database:
+
+   ```sql
+   CREATE DATABASE student_info;
+   ```
 ### Update the `appsettings.json` file with your MySQL connection string:
 
 ```json
@@ -67,6 +81,33 @@ dotnet restore
   }
 }
 ```
+
+## Migrate the Database
+
+1. Open a terminal and navigate to the project directory.
+2. Ensure that you have the necessary Entity Framework Core tools installed. If you haven't installed them, run:
+
+   ```bash
+   dotnet tool install --global dotnet-ef
+   ```
+
+3. Apply migrations to set up the database schema by running the following command:
+
+   ```bash
+   dotnet ef database update
+   ```
+
+   This command will create the required tables (`Students`, `PaymentNotifications`, etc.) based on the defined models in your application.
+
+   ## Verify the Setup
+
+1. Use your MySQL client to check if the tables have been created and that the initial data (if any) is present.
+2. Run the application to ensure it can connect to the database and that the functionality works as expected.
+
+## Troubleshooting
+
+- If you encounter any issues with connecting to the database, double-check the connection string and ensure that the MySQL server is running.
+- Ensure that the user has the appropriate permissions to access and modify the `student_info` database.
 
 ## Running the Application
 Start the application using the following command:
@@ -91,6 +132,16 @@ https://localhost:<port>/swagger
 # Usage
 
 ## Endpoints
+
+- **POST** `/api/v1/auth/login`
+Generate authentication token to be used during student validation and payment notification.
+Sample Request:
+  ```json
+  {
+    "username": "string",
+    "password": "string"
+  }
+```
 
 - **POST** `/api/v1/payments/notification`
 
