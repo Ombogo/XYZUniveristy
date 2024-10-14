@@ -1,0 +1,6 @@
+@XYZUniversityPaymentsAPI_HostAddress = http://localhost:5137
+
+GET {{XYZUniversityPaymentsAPI_HostAddress}}/students/validation
+Accept: application/json
+
+###
